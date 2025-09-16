@@ -1,0 +1,277 @@
+
+Cycle 1
+Fetched instruction: addi $1, $0, 5
+Pipeline State:
+  IF_ID: addi $1, $0, 5
+  ID_EX: NOP
+  EX_MEM: NOP
+  MEM_WB: NOP
+  Registers [0–7]: [0, 0, 0, 0, 0, 0, 0, 0]
+  Instructions executed so far: 0
+
+Cycle 2
+Fetched instruction: addi $2, $0, 10
+Pipeline State:
+  IF_ID: addi $2, $0, 10
+  ID_EX: {'opcode': 'addi', 'rt': 1, 'rs': 0, 'imm': 5}
+  EX_MEM: NOP
+  MEM_WB: NOP
+  Registers [0–7]: [0, 0, 0, 0, 0, 0, 0, 0]
+  Instructions executed so far: 0
+
+Cycle 3
+Fetched instruction: add $3, $1, $2
+Pipeline State:
+  IF_ID: add $3, $1, $2
+  ID_EX: {'opcode': 'addi', 'rt': 2, 'rs': 0, 'imm': 10}
+  EX_MEM: {'opcode': 'addi', 'rt': 1, 'rs': 0, 'imm': 5, 'result': 5, 'rd': 1}
+  MEM_WB: NOP
+  Registers [0–7]: [0, 0, 0, 0, 0, 0, 0, 0]
+  Instructions executed so far: 0
+
+Cycle 4
+Fetched instruction: sw $3, 0($0)
+Pipeline State:
+  IF_ID: sw $3, 0($0)
+  ID_EX: {'opcode': 'add', 'rd': 3, 'rs': 1, 'rt': 2}
+  EX_MEM: {'opcode': 'addi', 'rt': 2, 'rs': 0, 'imm': 10, 'result': 10, 'rd': 2}
+  MEM_WB: {'opcode': 'addi', 'rt': 1, 'rs': 0, 'imm': 5, 'result': 5, 'rd': 1}
+  Registers [0–7]: [0, 0, 0, 0, 0, 0, 0, 0]
+  Instructions executed so far: 0
+
+Cycle 5
+Fetched instruction: lw $4, 0($0)
+Pipeline State:
+  IF_ID: lw $4, 0($0)
+  ID_EX: {'opcode': 'sw', 'rt': 3, 'rs': 0, 'imm': 0}
+  EX_MEM: {'opcode': 'add', 'rd': 3, 'rs': 1, 'rt': 2, 'result': 15}
+  MEM_WB: {'opcode': 'addi', 'rt': 2, 'rs': 0, 'imm': 10, 'result': 10, 'rd': 2}
+  Registers [0–7]: [0, 5, 0, 0, 0, 0, 0, 0]
+  Instructions executed so far: 1
+
+Cycle 6
+Pipeline State:
+  IF_ID: NOP
+  ID_EX: {'opcode': 'lw', 'rt': 4, 'rs': 0, 'imm': 0}
+  EX_MEM: {'opcode': 'sw', 'rt': 3, 'rs': 0, 'imm': 0, 'addr': 0, 'val': 15}
+  MEM_WB: {'opcode': 'add', 'rd': 3, 'rs': 1, 'rt': 2, 'result': 15}
+  Registers [0–7]: [0, 5, 10, 0, 0, 0, 0, 0]
+  Instructions executed so far: 2
+
+Cycle 7
+Pipeline State:
+  IF_ID: NOP
+  ID_EX: NOP
+  EX_MEM: {'opcode': 'lw', 'rt': 4, 'rs': 0, 'imm': 0, 'addr': 0, 'rd': 4}
+  MEM_WB: {'opcode': 'sw', 'rt': 3, 'rs': 0, 'imm': 0, 'addr': 0, 'val': 15}
+  Registers [0–7]: [0, 5, 10, 15, 0, 0, 0, 0]
+  Instructions executed so far: 3
+
+Cycle 8
+Pipeline State:
+  IF_ID: NOP
+  ID_EX: NOP
+  EX_MEM: NOP
+  MEM_WB: {'opcode': 'lw', 'rt': 4, 'rs': 0, 'imm': 0, 'addr': 0, 'rd': 4, 'result': 15}
+  Registers [0–7]: [0, 5, 10, 15, 0, 0, 0, 0]
+  Instructions executed so far: 4
+
+Cycle 9
+Pipeline State:
+  IF_ID: NOP
+  ID_EX: NOP
+  EX_MEM: NOP
+  MEM_WB: NOP
+  Registers [0–7]: [0, 5, 10, 15, 15, 0, 0, 0]
+  Instructions executed so far: 5
+
+Cycle 10
+Pipeline State:
+  IF_ID: NOP
+  ID_EX: NOP
+  EX_MEM: NOP
+  MEM_WB: NOP
+  Registers [0–7]: [0, 5, 10, 15, 15, 0, 0, 0]
+  Instructions executed so far: 5
+
+Cycle 11
+Pipeline State:
+  IF_ID: NOP
+  ID_EX: NOP
+  EX_MEM: NOP
+  MEM_WB: NOP
+  Registers [0–7]: [0, 5, 10, 15, 15, 0, 0, 0]
+  Instructions executed so far: 5
+
+Cycle 12
+Pipeline State:
+  IF_ID: NOP
+  ID_EX: NOP
+  EX_MEM: NOP
+  MEM_WB: NOP
+  Registers [0–7]: [0, 5, 10, 15, 15, 0, 0, 0]
+  Instructions executed so far: 5
+
+Cycle 13
+Pipeline State:
+  IF_ID: NOP
+  ID_EX: NOP
+  EX_MEM: NOP
+  MEM_WB: NOP
+  Registers [0–7]: [0, 5, 10, 15, 15, 0, 0, 0]
+  Instructions executed so far: 5
+
+Cycle 14
+Pipeline State:
+  IF_ID: NOP
+  ID_EX: NOP
+  EX_MEM: NOP
+  MEM_WB: NOP
+  Registers [0–7]: [0, 5, 10, 15, 15, 0, 0, 0]
+  Instructions executed so far: 5
+
+Cycle 15
+Pipeline State:
+  IF_ID: NOP
+  ID_EX: NOP
+  EX_MEM: NOP
+  MEM_WB: NOP
+  Registers [0–7]: [0, 5, 10, 15, 15, 0, 0, 0]
+  Instructions executed so far: 5
+
+Cycle 16
+Pipeline State:
+  IF_ID: NOP
+  ID_EX: NOP
+  EX_MEM: NOP
+  MEM_WB: NOP
+  Registers [0–7]: [0, 5, 10, 15, 15, 0, 0, 0]
+  Instructions executed so far: 5
+
+Cycle 17
+Pipeline State:
+  IF_ID: NOP
+  ID_EX: NOP
+  EX_MEM: NOP
+  MEM_WB: NOP
+  Registers [0–7]: [0, 5, 10, 15, 15, 0, 0, 0]
+  Instructions executed so far: 5
+
+Cycle 18
+Pipeline State:
+  IF_ID: NOP
+  ID_EX: NOP
+  EX_MEM: NOP
+  MEM_WB: NOP
+  Registers [0–7]: [0, 5, 10, 15, 15, 0, 0, 0]
+  Instructions executed so far: 5
+
+Cycle 19
+Pipeline State:
+  IF_ID: NOP
+  ID_EX: NOP
+  EX_MEM: NOP
+  MEM_WB: NOP
+  Registers [0–7]: [0, 5, 10, 15, 15, 0, 0, 0]
+  Instructions executed so far: 5
+
+Cycle 20
+Pipeline State:
+  IF_ID: NOP
+  ID_EX: NOP
+  EX_MEM: NOP
+  MEM_WB: NOP
+  Registers [0–7]: [0, 5, 10, 15, 15, 0, 0, 0]
+  Instructions executed so far: 5
+
+Cycle 21
+Pipeline State:
+  IF_ID: NOP
+  ID_EX: NOP
+  EX_MEM: NOP
+  MEM_WB: NOP
+  Registers [0–7]: [0, 5, 10, 15, 15, 0, 0, 0]
+  Instructions executed so far: 5
+
+Cycle 22
+Pipeline State:
+  IF_ID: NOP
+  ID_EX: NOP
+  EX_MEM: NOP
+  MEM_WB: NOP
+  Registers [0–7]: [0, 5, 10, 15, 15, 0, 0, 0]
+  Instructions executed so far: 5
+
+Cycle 23
+Pipeline State:
+  IF_ID: NOP
+  ID_EX: NOP
+  EX_MEM: NOP
+  MEM_WB: NOP
+  Registers [0–7]: [0, 5, 10, 15, 15, 0, 0, 0]
+  Instructions executed so far: 5
+
+Cycle 24
+Pipeline State:
+  IF_ID: NOP
+  ID_EX: NOP
+  EX_MEM: NOP
+  MEM_WB: NOP
+  Registers [0–7]: [0, 5, 10, 15, 15, 0, 0, 0]
+  Instructions executed so far: 5
+
+Cycle 25
+Pipeline State:
+  IF_ID: NOP
+  ID_EX: NOP
+  EX_MEM: NOP
+  MEM_WB: NOP
+  Registers [0–7]: [0, 5, 10, 15, 15, 0, 0, 0]
+  Instructions executed so far: 5
+
+Cycle 26
+Pipeline State:
+  IF_ID: NOP
+  ID_EX: NOP
+  EX_MEM: NOP
+  MEM_WB: NOP
+  Registers [0–7]: [0, 5, 10, 15, 15, 0, 0, 0]
+  Instructions executed so far: 5
+
+Cycle 27
+Pipeline State:
+  IF_ID: NOP
+  ID_EX: NOP
+  EX_MEM: NOP
+  MEM_WB: NOP
+  Registers [0–7]: [0, 5, 10, 15, 15, 0, 0, 0]
+  Instructions executed so far: 5
+
+Cycle 28
+Pipeline State:
+  IF_ID: NOP
+  ID_EX: NOP
+  EX_MEM: NOP
+  MEM_WB: NOP
+  Registers [0–7]: [0, 5, 10, 15, 15, 0, 0, 0]
+  Instructions executed so far: 5
+
+Cycle 29
+Pipeline State:
+  IF_ID: NOP
+  ID_EX: NOP
+  EX_MEM: NOP
+  MEM_WB: NOP
+  Registers [0–7]: [0, 5, 10, 15, 15, 0, 0, 0]
+  Instructions executed so far: 5
+
+Cycle 30
+Pipeline State:
+  IF_ID: NOP
+  ID_EX: NOP
+  EX_MEM: NOP
+  MEM_WB: NOP
+  Registers [0–7]: [0, 5, 10, 15, 15, 0, 0, 0]
+  Instructions executed so far: 5
+
+Total instructions executed: 5
